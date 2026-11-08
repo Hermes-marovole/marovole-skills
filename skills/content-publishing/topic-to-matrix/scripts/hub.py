@@ -115,7 +115,7 @@ def cmd_check(a):
             errs.append("scores.ip_fit 为空：个人号选题必须按 ip-principle.md 打分（公司号把 ip.account 设为 company）")
         for k in ["real_question", "step", "line", "slogan_tie"]:
             if not ip.get(k):
-                errs.append(f"ip.{k} 为空：个人号选题必须写清 IP 对齐")
+                errs.append(f"ip.{k} 为空：个人号选题必须写清 IP 对齐（real_question=网上真实案例出处，不用同事）")
         if ip.get("step") and ip["step"] not in {"说清需求", "拆成步骤", "验收结果", "无"}:
             errs.append("ip.step 只能是 说清需求/拆成步骤/验收结果/无")
         sv = (dec.get("formats") or {}).get("short_video", {})
