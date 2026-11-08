@@ -50,7 +50,7 @@ marovole-skills/
 └── skills/               # 精选 promoted Hermes skills，不是完整 registry
 ```
 
-当前 promoted skills（共 10 个）：
+当前 promoted skills（共 12 个）：
 
 | Skill | 路径 | 一句话结果与核心护栏 |
 |---|---|---|
@@ -64,6 +64,8 @@ marovole-skills/
 | **link2doc** | [skills/research/link2doc/](skills/research/link2doc/) | **外部链接 → 结构化知识库文档**：从网页、长文、GitHub 收集高信号内容，整理成可复现 Markdown 文档并归档入库 |
 | **x2doc** | [skills/research/x2doc/](skills/research/x2doc/) | **X/Twitter 帖子 → 深度文档 + 转发推文 + 邮件简报**：自动抓取 X 长文、Quote 链与评论区洞察，一键生成知识库文档与可复制转发语 |
 | **dokobot** | [skills/dokobot/](skills/dokobot/) | **真实 Chrome 网页提取器**：用带登录态的真实浏览器读取 JS-heavy 或登录墙后的深层网页内容 |
+| **topic-to-matrix** | [skills/content-publishing/topic-to-matrix/](skills/content-publishing/topic-to-matrix/) | **一个选题 → 长片/短视频/贴图/长文四形态 × 中美多平台判断单**：只抓一次原文建事实表，`hub.py check` 校验引语可回溯、审核小时不超预算；个人号选题强制过「不用学写代码，学会像产品经理一样指挥 AI」IP 原则（真实提问 / 卡在哪一步 / 并排实测，短视频 ip_fit≥4） |
+| **content-creator-pipeline** | [skills/social-media/content-creator-pipeline/](skills/social-media/content-creator-pipeline/) | **「存 / 做」双暗号内容流水线**：素材入库 + 30 秒编导判断单（含 IP 对齐），或直接走 grounding + 独立 subagent 逐句核查推草稿箱；本仓库副本已脱敏 IP/邮箱/密钥路径 |
 
 完整 live registry 请查看本机：
 

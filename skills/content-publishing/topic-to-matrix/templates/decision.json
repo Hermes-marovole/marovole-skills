@@ -1,0 +1,65 @@
+{
+  "topic": "",
+  "angle": "",
+  "hook_fact_ids": [],
+  "timeliness": "evergreen",
+  "audience": "both",
+  "scores": {
+    "evidence": null,
+    "counterintuitive": null,
+    "visual": null,
+    "depth": null,
+    "global": null,
+    "risk": null,
+    "ip_fit": null
+  },
+  "formats": {
+    "long_video": {
+      "decision": "",
+      "reason": "",
+      "platforms": [],
+      "lang": [],
+      "skill": "long-form-ai-explainer-film",
+      "review_hours": 3,
+      "fact_ids": []
+    },
+    "short_video": {
+      "decision": "",
+      "reason": "",
+      "platforms": [],
+      "lang": [],
+      "skill": "science-video-daily",
+      "review_hours": 1,
+      "fact_ids": []
+    },
+    "image_post": {
+      "decision": "",
+      "reason": "",
+      "platforms": [],
+      "lang": [],
+      "skill": "ai-tietu",
+      "review_hours": 0.5,
+      "fact_ids": []
+    },
+    "article": {
+      "decision": "",
+      "reason": "",
+      "platforms": [],
+      "lang": [],
+      "skill": "wechat-animated-longform",
+      "review_hours": 1,
+      "fact_ids": []
+    }
+  },
+  "order": [],
+  "budget_note": "",
+  "risks": [],
+  "ip": {
+    "account": "personal",
+    "real_question": "",
+    "step": "",
+    "demo": "",
+    "line": "",
+    "slogan_tie": ""
+  }
+}
