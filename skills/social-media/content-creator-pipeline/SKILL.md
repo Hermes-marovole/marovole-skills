@@ -101,6 +101,8 @@ trigger:
 
 ## ✅ 现行主线：公众号「AI 快讯贴图」（2026-10-02 起）
 
+> **11-08 用户定：快讯减少。** 不再日更，改为每周 1–2 条「我的判断」，由交互触发，不新建日更 cron（`cb3ae0a9b0a3` / `97034ee88833` 已不在定时任务列表里）。个人号主线改为《零基础 AI 说明书》与每周 1 篇「FDE 手记」，全平台分工见 Vault `05-Outputs/content-creator/IP-PLATFORM-STRATEGY-v1.md`。全自动 AI 出品，不拍摄任何内容。下面的日更节奏只当历史参考。
+
 - 定位：快讯只是入口，判断才是价值。主题=AI 工具/模型更新的实测判断（PM+全栈视角）
 - 代码与规范：`~/HermesWork/ai-tietu/`（README.md 规范 / render.py HTML→PNG 3:4@2x / themes/{blueprint,paper,swiss}.css / cron-prompt.md）
 - 每条=封面+事实+判断 3 卡 + caption；中文卡片一律 HTML 渲染，不用 AI 生图（会写错字）
