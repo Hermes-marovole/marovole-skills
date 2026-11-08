@@ -13,12 +13,12 @@
 - **它是什么**：`sarpstar/cinecode` 是土耳其电影制作人 Sarp Yıldız (@sarpstar) 开源的一套面向 Claude Code / Cursor 的代码出片 Agent Skill（MIT 协议，内置完整简体中文文档 `README.zh-CN.md`）。它通过无头 Chrome 逐帧渲染 `Canvas 2D` 或 `three.js + pmndrs/postprocessing` 场景，搭配多轨混音与 `-14 LUFS` 母带处理，端到端产出 15 秒短片到 10 分钟以上的 YouTube 纪录片 MP4。
 - **它是「15+ 个开源代码视频 Skill 的集大成缝合怪」**：作者在致谢中明确列出，它把 `lemomo-ai/lemo-opuscar` 的 51 套风格配方（加 7 套自有共 58 套）、`charlie947/motion-graphics-skills` 的 `vox-explainer` 纸面调查纪录片语法、`tuzhechen2005/opus-video-skills` 的节拍网格、`howseen-ai/claude-motion-design` 的剪辑接缝与盲审测试、`blader/humanizer` 的去 AI 味词检、`sgossner/VCSL` & `VSCO-2-CE` 的 CC0 真实乐器采样、`Kenney` 的 CC0 音效库整合进了一套零 npm 依赖的 Python + Node 工具链。
 - **原帖百慕大纪录片实盘验尸（7分51秒成片实测）**：作者自述“睡前对 cinecode 说『你做决定』，一觉醒来拿到 8 分钟几乎成品的百慕大纪录片，仅 1 轮修改定稿”。我们对原帖附带的 `471.5s`（24fps，11,315 帧）成片跑了它自带的 `qc.py` 与 `scene_check.py` 实测：**首 2 秒运动能量 `mean=1.09`（PASS）**；**去摄影机运动后的主体残差 `1.22–6.52`（8 个 1 分钟段落全 PASS，非死图推镜）**；抽帧接触表（24 张静帧）可见冷峻海洋 3D 水面雾气 + 1945 年美国海军调查报告高亮缩进 + 佛罗里达航线矢量海图 + 1893 航海日志与 1964 实体书脊特写 + 英土双语上下叠放字幕。
-- **与我们现有栈的取舍结论（借件不换栈）**：**绝不要用它替换我们已跑通的 `long-form-ai-explainer-film` 或 `xilo-opus-video`，更不要跟风去做百慕大/超自然未解之谜泛流量号**（不符合我们的变现漏斗）。但它的 **5 个独立脚本与机制** 可以直接拿来武装我们的 YouTube 深度长视频与个人号：
+- **与我们现有栈的取舍结论（借件不换栈，立 IP 不追热点）**：**绝不要用它替换我们已跑通的 `long-form-ai-explainer-film` 或 `xilo-opus-video`，更不要跟风去做百慕大/超自然未解之谜泛流量号，甚至不要去做第三人称“硅谷巨头暗战/科技史说书”的博主**（那种内容没有“你是谁”，立不住个人 IP）。但它的 **5 个独立脚本与机制** 可以直接拿来武装我们的**第一人称工程与 FDE 实战纪实（做自己）**：
   1. **`scene_check.py action`（去运镜主体动作残差检测）**：算出扣掉平移/缩放后的画面真实变化，专治“光靠 Zoom-in 假装画面在动”；
-  2. **`asset_search.py supply`（11 个开放档案/图库源库存探针 + 自动 `LICENSES.csv`）**：开工前 20 秒摸清 Wikimedia / Internet Archive / Met / Cleveland / Rijksmuseum / AIC / Openverse / NASA / Poly Haven / Pixabay / FilmGrab 里某个历史人物或事件有多少可用公有领域素材；
-  3. **`voice_treat.py`（旁白介质与空间声学卷积）**：拒绝干瘪原始 TTS，一键把旁白处理成 `tape`（档案磁带）、`radio`（老电台）、`close`（贴耳书桌）并卷积片中标志性声音（`--imprint`）；
-  4. **`styles/vox-explainer.md`（Vox 调查桌面剪报风）**：撕边卡片 + 马克笔自绘圈重点 + 荧光笔高亮原件 + 滚轮计数器，极适合做 **AI 商业调查 / 硅谷巨头暗战 / 开源生态拆解** 类 YouTube 纪录片；
-  5. **`writing.md` §13–16（5 分钟以上长片的「好奇心地图 Curiosity Map」+ `words_check.py` 禁破折号与 AI 套话门禁）**。
+  2. **`styles/vox-explainer.md` + `craft.md` §8（UI Hero Shots）**：不拿来拼贴维基百科老照片，而是用来**高亮展示你自己的真实账单、Git Commit、排障日志与 3D 倾斜暗场终端界面**，把一线实战过程拍出电影级调查质感；
+  3. **`voice_treat.py`（旁白介质与空间声学卷积）**：拒绝干瘪原始 TTS 和端着的播音腔，用 `close` + `room` 把人声处理成温暖贴耳的“深夜书桌复盘感”；
+  4. **`writing.md` §13–16（长片的「好奇心地图 Curiosity Map」+ `words_check.py` 禁破折号与 AI 套话门禁）**：用来组织你解决真实业务难题时的悬念与踩坑反转；
+  5. **`asset_search.py supply`（11 个开放档案/图库源库存探针 + 自动 `LICENSES.csv`）**：仅在需要引用外部原始论文/标准文献作证时作为辅助探针。
 
 ---
 
@@ -85,12 +85,12 @@
 
 ### 3.2 形态映射表（Cinecode 支持形态 vs 我们的内容矩阵）
 
-| 引擎形态 | 画布与底层技术 | 视觉语法 | 对应我们哪条线 / 哪类选题 |
+| 引擎形态 | 画布与底层技术 | 视觉语法 | 对应我们哪条线 / 哪类选题（以打造个人 IP 为唯一准则） |
 |---|---|---|---|
-| **Film Mode · Documentary（长纪录片）** | `1920×1080` (`three.js` + `Canvas 2D` + 档案馆真实图片/视频序列帧) | 3D 物理光影场景 + 历史原件高亮 (`Document zoom`) + 航线地图 + 计数器 (`Counter`) | **YouTube 个人主频道（10–15 分钟英文深度长视频）**：AI 巨头演进史、开源项目兴衰、硅谷商业调查、技术人物传记 |
-| **Quick Mode · Explainer（科普/商业拆解）** | `1920×1080` 或 `1080×1920`（单文件 `film.html` + Web Audio 离线合成） | `vox-explainer`（桌面剪报）、`archive-lighttable`（灯箱胶片）、`halftone-dossier`（调查卷宗）、`teardown`（工程拆解） | **个人号 AI 实测对比 / 商业故事切片**（1–3 分钟，X / 视频号 / B站 / YouTube Shorts） |
-| **Ad & Product（产品/UI 主视觉片）** | `16:9` + `9:16` + `1:1` 三端同出 | **UI Hero Shot**（真实软件界面倾斜 30–50° 置于暗场，景深移焦，聚光灯滞后 0.4s 跟随操作） | **出海 AI 工具站发布宣传片 / 开源 Skill 演示视频 / 付费社群宣传片** |
-| **Footage Edit（口播/录屏精剪）** | 任意画幅（Whisper 词级切气口 + 去重录 + 词同步图层） | 自动剪掉 >0.55s 停顿与口误重录，在说出关键词前 `0.2–0.6s` 弹出信息卡 | **FDE 同事培训实录 / 个人真人出镜或实操录屏快评** |
+| **Film Mode · Documentary（长纪录片）** | `1920×1080` (`three.js` + `Canvas 2D` + 自有终端日志/账单原件/实测序列帧) | 真实账单与日志原件高亮 (`Document zoom`) + 3D 倾斜暗场界面 (`UI Hero Shot`) + 计数器 (`Counter`) | **YouTube 个人主频道（第一人称工程与 FDE 实战纪实）**：我自己在非技术公司落地 AI 的真实翻车与重构、真金白银亿级 Token 账单审计、跨模型路由实战复盘 |
+| **Quick Mode · Explainer（实测/复盘短片）** | `1920×1080` 或 `1080×1920`（单文件 `film.html` + Web Audio 离线合成） | `vox-explainer`（桌面研究卷宗）、`archive-lighttable`（灯箱）、`halftone-dossier`、`teardown` | **个人号第一人称 AI 实测对比 / 踩坑切片**（1–3 分钟，X / 视频号 / B站 / YouTube Shorts） |
+| **Ad & Product（产品/UI 主视觉片）** | `16:9` + `9:16` + `1:1` 三端同出 | **UI Hero Shot**（真实软件界面倾斜 30–50° 置于暗场，景深移焦，聚光灯滞后 0.4s 跟随操作） | **自有开源 Skill 演示视频 / 出海工具站实机演示 / 社群实战案例展示** |
+| **Footage Edit（口播/录屏精剪）** | 任意画幅（Whisper 词级切气口 + 去重录 + 词同步图层） | 自动剪掉 >0.55s 停顿与口误重录，在说出关键词前 `0.2–0.6s` 弹出信息卡 | **FDE 带同事用 AI 的真实工作流实录 / 个人实操录屏复盘** |
 
 ### 3.3 与我们现有视频工具链的取舍表（谁强·怎么配合）
 
@@ -124,82 +124,73 @@
 
 ---
 
-## 四、 核心命题回应：「后续我们也可以做纪录片起号 YouTube 吗？」
+## 四、 核心命题回应：「用个人 IP 原则（做自己，不追热点）审视 YouTube 纪录片起号」
 
-你提到“后续我们也可以做纪录片，起号 YouTube”。结合我们的 `youtube-channel-growth-playbook` 四关评估法与频道现状，给出明确结论与落地路径：
+你明确了核心原则：**“博主是追热点的，总是想着流量；但是 IP 是做自己。我们做内容后续都是打造 IP。”** 用这条铁律重新审视 YouTube 纪录片起号，结论非常清晰：
 
-### 4.1 战略判断：用它的「纪录片形式」，装我们的「AI × 商业/科技实测内核」，绝不做百慕大类泛猎奇号
+### 4.1 战略红线：砍掉无面孔的「第三人称说书博主」模式，只拍「第一人称实战纪实（Skin in the Game）」
 
-先过四关评估作者说的“百慕大/超自然未解之谜（Paranormal）纪录片赛道”：
-1. **粉丝可迁移性（一票否决项）**：看百慕大三角、外星人、泰坦尼克号沉没的观众，**0% 会转化成你开源 Skill 的 Star 用户、付费 AI 社群会员或企业咨询客户**。而且这类泛娱乐猎奇赛道的 RPM（千次播放收益，通常 `$2–$4`）远低于 AI / 软件工程 / 商业科技赛道（`$12–$25+`）。
-2. **历史教训复盘**：我们之前在 YouTube 频道（`@marovole`）试过“古典历史/苏轼/机械拆解”，虽然单条 10 分钟片完播率极高，但因为**冷启动期没有英文高频搜索词 + 频道画像撕裂**，28 天只有个位数播放。
-3. **同质化风险**：作者已经把 `cinecode` 开源（短短几天已达 762 stars），接下来几个月 YouTube 上会涌现大批用同款模板批量生成的“泰坦尼克号/百慕大/历史奇案”AI 纪录片，纯拼产能必卷入红海。
+1. **为什么既不做“百慕大猎奇”，也绝不做“硅谷巨头秘史/科技史说书”？**
+   - 作者提到的“百慕大三角/超自然事件”是纯泛流量猎奇，受众与我们的变现漏斗 0 交集。
+   - 更具迷惑性的是模仿 *ColdFusion / MagnatesMedia* 去做《2017 Transformer 备忘录秘史》或《AI 巨头暗战》——**这依然是典型的「博主思维」**。因为这类题材跟“你是谁”毫无关系，任何一个没上过班的学生用 `cinecode` 抓维基百科都能批量生成。观众看完记住的是故事本身，不是你；你只是一个没有面孔的说书工具人（Faceless Channel），根本立不住个人 IP。
+2. **什么是真正立得住的个人 IP 纪录片？**
+   - 别人用 `cinecode` 可以一键复制你的视觉配方，但**抄不走你在非技术公司当 12 年 PM + AI 全栈兼 FDE 的真实排障日志、抄不走你真金白银烧出来的账单、也抄不走你带非技术同事落地 AI 时的思考过程**。
+   - **✅ 我们的唯一打法（First-Person Engineering & FDE Chronicles）**：用 `cinecode` 的调查纪录片视觉与声学外壳（`vox-explainer` 桌面卷宗 + 荧光笔高亮原件 + 3D 倾斜暗场终端界面 + 贴耳书房人声），去拍**你自己亲手干过的事（I / We），而不是别人的八卦（They）**。
 
-**✅ 正确的打法（主线 × 纪录片形式交叉）**：
-把 `cinecode` 的 **调查纪录片视觉与叙事外壳（Vox 桌面档案风 + 3D 氛围重现 + 真实史料高亮）**，直接用在我们已经定好的 **AI × 科技商业 × 超级个体** 主线上！
-海外观众在 YouTube 上极其爱看 **“Tech Mini-Documentary / Investigation（科技与商业深度调查纪录片）”**（对标频道：*ColdFusion*、*Vox*、*MagnatesMedia*、*Fern*、* Asianometry*）。
+### 4.2 哪些母题真正属于「做自己」的第一人称纪实？
 
-### 4.2 哪些选题能用「纪录片形式」在 YouTube 冷启动拿搜索流量？
+不再为了蹭搜索词去硬编自己没体感的话题，也不为了“凑周更”去套模板灌水，只从你的真实战场里取材：
 
-冷启动期标题必须带英文观众真会搜的高频词（`Claude`, `OpenAI`, `Cursor`, `AI Agent`, `Nvidia`, `Anthropic`, `DeepSeek`），但讲法不再是干巴巴的教程，而是**悬疑调查纪录片（Curiosity-driven Documentary）**：
-
-1. **选题方向 A：AI 巨头与开源暗战史（带真实法庭文件/邮件/论文档案高亮）**
-   - 例：*The $200/Month AI Trap: How Coding Agents Secretly Burn Your Tokens (And How We Measured It)* —— 用 `vox-explainer` 桌面调查风，直接把我们实测的 `real-api-pricing` 账单、97% 缓存占比公式、各家订阅实测数据做成“调查卷宗 + 马克笔圈重点 + 实时滚轮计数器”。
-2. **选题方向 B：用 AI 挑战不可能的任务（Build-in-Public 纪实纪录片）**
-   - 例：*I Built a 24/7 AI Employee Team on a Mac Mini: 30 Days of Real Logs & Failures* —— 结合真实终端日志截图（倾斜 3D UI Hero Shots）、崩溃现场还原、成本计数器，讲非技术团队怎么用 Agent 落地。
-3. **选题方向 C：改变 AI 走向的关键历史瞬间（硬核科技史调查）**
-   - 例：*The Rejected Paper That Created Modern AI: Inside the 2017 Transformer Memo* —— 用 `asset_search.py` 抓取公开论文手稿、专利文件、当时的新闻剪报，用调查纪录片节奏讲清技术突破背后的钱与人。
+1. **母题方向 A：FDE 一线落地与翻车纪实（全网独一份的非技术公司实战视角）**
+   - 拍你在非技术公司推广 Codex / Claude Code / Hermes、带非技术同事用 AI 提效的真实过程：原本业务卡在哪 → 你怎么设计工作流 → 实际上线后哪里崩了 → 怎么修好并沉淀成开源 Skill 的。
+2. **母题方向 B：真金白银的账单审计与架构复盘（晒自己的真账本）**
+   - 直接摊开你自己的 `ccusage` / Factory 亿级 Token 真实账单、97% 缓存占比测算、跨模型兜底路由（GPT → Grok → DeepSeek）与代理排障实录。讲清楚**你遇到了什么问题、算出了什么反直觉结论、最后怎么改架构的**。
 
 ---
 
-## 五、 立刻可借的 5 个工程机制（无需换栈，直接升级现有管线）
+## 五、 立刻可借的 5 个工程机制（技术为「真实自我」服务）
 
-我们不需要把整个工作流切到 `cinecode` 的交互问答模式（它每次开拍要问 6 个问题、等 6–8 次审批，不符合你“每周只给 10 小时审核”的精简原则）。最聪明的做法是**把 `/Users/marovole/Workspace/playground/cinecode/scripts/` 当作本地工具箱直接调用**：
+我们不需要把工作流切到 `cinecode` 繁琐的交互问答模式，而是把 `/Users/marovole/Workspace/playground/cinecode/scripts/` 当作本地工具箱，用来高质感地呈现你的真实工作现场：
 
-### 1. 借 ` writing.md` §13 的「好奇心地图（Curiosity Map）」写 YouTube 10 分钟长剧本
-以后写 YouTube 长视频剧本前，在 `plan.md` 里强制加一张 **Curiosity Map 表**：
-- **0–5 秒（Pattern Break）**：第一帧必须在动，抛出一个反直觉的画面或事实冲突；
-- **5–30 秒（The Promise）**：明确告诉观众这 10 分钟要解开哪一个核心悬念，涉及多少钱/多少时间；
-- **每 60–90 秒一个子问题闭环**：列出每个子问题在第几秒打开（Open）、第几秒兑现（Pay off），同时最多保持 2 个大问题处于悬念状态，绝不在观众产生好奇前提前剧透答案。
+### 1. 借 `styles/vox-explainer.md` 与 `craft.md` §8（UI Hero Shots）呈现「自有实战证据」
+我们的“历史档案馆”不是博物馆老照片，而是**你自己的 Git Commit、终端报错日志、`ccusage` 账单原件与 Obsidian 架构笔记**：
+- **晒账单/日志/代码原件时**：按 `vox-explainer.md` 规范，放在暖米色/暗色研究桌面上，用黄色荧光笔从左到右动态划出关键数据行；
+- **晒终端/工具实操时**：按 `craft.md` §8 的 **UI Hero Shot** 规范，不再放平铺直叙的全屏录屏，而是把你的真实界面置于暗色 3D 空间中倾斜 `30–50°`、旋转 `10–20°`，加上浅景深移焦（只让当前操作的 2–4 行代码清晰）和滞后 `0.3s` 的跟随柔光。
 
-### 2. 借 `asset_search.py` 做开工前 20 秒史料探针
-在做任何涉及真实公司、人物、历史事件的视频前，直接跑一行命令：
-```bash
-python3 /Users/marovole/Workspace/playground/cinecode/scripts/asset_search.py supply \
-  --q "Bell Labs transistor" --q "Claude Shannon"
-```
-20 秒内就能知道 Wikimedia Commons、Internet Archive、美国各大博物馆里有多少张 CC0 / Public Domain 高清原图和历史视频；挑中后用 `fetch` 下载，自动生成合规的 `LICENSES.csv` 与 YouTube 简介致谢行。
-
-### 3. 借 `voice_treat.py` 给 ElevenLabs 旁白加上「纪录片声学空间感」
-我们现在的 `narrate.py` 生成的 ElevenLabs 语音是纯干声（Raw TTS）。在混音前加一步：
+### 2. 借 `voice_treat.py` 打造「深夜书房跟朋友复盘」的贴耳人声
+拒绝端着的播音腔和干瘪的原始 TTS。在 `narrate.py` 生成语音后、混音前加一步：
 ```bash
 python3 /Users/marovole/Workspace/playground/cinecode/scripts/voice_treat.py apply \
   assets/audio/ch*.mp3 --medium close --space room --target -18 --out assets/audio/treated
 ```
-- 讲当代科技/桌面拆解用 `--medium close --space room`（温暖贴耳的研究员书桌感）；
-- 引用历史人物原话或旧档案时，单独把那几句切成 `--medium tape --space hall` 或 `--medium radio --space dry`（老磁带/电台质感），听觉层次感瞬间拉开！
+- 全片主叙事固定用 `--medium close --space room`（温暖贴耳的书桌交谈感，传递一线实战者的真诚与冷静）；
+- 搭配 `Kenney` CC0 真实物理音效（翻页、马克笔划重点、机械键盘敲击），让观众感觉就坐在你工位旁边看你拆解问题。
+
+### 3. 借 `writing.md` §13 的「好奇心地图（Curiosity Map）」组织第一人称复盘叙事
+把你自己踩坑和破局的过程拍出悬疑感，写剧本前先列 **Curiosity Map 表**：
+- **0–5 秒（Pattern Break）**：第一帧直接亮出你在实战中撞上的真实反直觉结果或翻车现场（禁黑场淡入，首 2 秒必须有画面动作）；
+- **5–30 秒（The Promise）**：用第一人称明确告诉观众，接下来几分钟我会摊开哪份真实日志/账单，带你复盘我是怎么解决这个真问题的；
+- **每 60–90 秒一个排查闭环**：顺着你当时真实的排查思路（假设 1 失败 → 抓包/查日志发现盲点 → 最终解法），同时最多保持 2 个悬念，绝不堆砌枯燥的背景百科。
 
 ### 4. 借 `scene_check.py` + `words_check.py` 当成片交付门禁
 在长片渲染出 MP4 后、发给你审片前，固定跑两道脚本：
-1. `python3 /Users/marovole/Workspace/playground/cinecode/scripts/words_check.py`：消灭剧本和字幕里所有的破折号（`—`）和英文 AI 味套话（`"not X but Y"`, `"in a world where"`, `"at its core"`）。
+1. `python3 /Users/marovole/Workspace/playground/cinecode/scripts/words_check.py`：消灭剧本和字幕里所有的破折号（`—`）和 AI 味套话（`\"not X but Y\"`, `\"in a world where\"`, `\"at its core\"`），确保台词像真人说话。
 2. `python3 /Users/marovole/Workspace/playground/cinecode/scripts/scene_check.py action <film.mp4> --every 15`：自动揪出哪一段画面“只有摄影机在缓慢推拉，画面主体根本没动”，在交付前重做该镜头。
 
-### 5. 借 `styles/vox-explainer.md` 与 `craft.md` §8（UI Hero Shots）丰富视觉武器库
-- 讲 **文档/论文/财报证据** 时：按 `vox-explainer.md` 规范，用暖米色桌面底板 + 撕边卡片 + 黄色荧光笔从左到右划出原文关键句；
-- 讲 **AI 工具/终端/网页实测** 时：按 `craft.md` §8 的 **UI Hero Shot** 规范，不再放平铺直叙的全屏录屏，而是把高清界面置于暗色 3D 空间中倾斜 `30–50°`、旋转 `10–20°`，加上浅景深移焦（只让当前操作的 2–4 行代码/按钮清晰）和轻微滞后 `0.3s` 的跟随柔光。
+### 5. 借 `asset_search.py` 仅作外部论文/原始文献的辅助探针
+不拿它去拼凑公共历史故事；只在你复盘自己的技术方案、需要顺带引用某篇原始论文或官方文档作对比时，用 `asset_search.py supply` 快速抓取合规原件并生成 `LICENSES.csv`。
 
 ---
 
 ## 六、 可执行下一步（低成本验证方案）
 
-不改写现有主力 Skill，分三步低成本跑通个人号 YouTube 纪录片第一期：
+不改写现有主力 Skill，也不搞“为了周更硬凑选题”，分三步跑出第一条真正立住你个人 IP 的实战纪实样片：
 
-- [ ] **Step 1（确定首发纪录片选题，5 分钟拍板）**：从下面 3 个带英文高搜索量关键词、又能直接复用我们已有实测数据的「AI 调查纪录片」选题中挑 1 个：
-  1. **★ 推荐选题 1（直击痛点 + 自有实测数据支撑）**：*The $200 AI Coding Illusion: What 100 Million Tokens of Real Billing Logs Reveal*（用 `vox-explainer` 桌面调查卷宗风 + 3D 算力堆栈拆解，深扒 Claude / Cursor / Codex / Devin 背后的真实缓存计费机制与省钱工作流，顺理成章引流到你的开源配置与社群）。
-  2. **候选选题 2（FDE 真实故事纪实）**：*I Replaced 5 Office Workflows with Local AI Agents (Here Is What Actually Broke)*（用 UI Hero Shots + 桌面档案风，复盘带非技术同事落地 AI 的真实翻车与提效对比）。
-  3. **候选选题 3（硬核科技商业史调查）**：*How a 2-Person Open Source Repo Beat $100M AI Video Startups*（拆解代码出片生态从 Remotion 到 Opus 5.5 再到开源 Skill 链的演进与底层逻辑）。
-- [ ] **Step 2（90 秒第一章 Pilot 试跑）**：选定题目后，我先用我们的 `grounding.py` 建好 `facts.json`，然后借用 `cinecode` 的 **`vox-explainer` 视觉配方 + `voice_treat.py`（`close/room` 书桌旁白 + `tape` 档案引语）+ `Kenney` 纸张/马克笔音效**，渲染出前 **90 秒（Cold Open + 第一幕）** 的 1080p 样片，并用 `qc.py` 与 `scene_check.py` 跑出全 PASS 报告发你审看。
-- [ ] **Step 3（固化格式 Format 批量出片）**：只要这 90 秒的「调查纪录片质感」达到你的预期，我们就把这套参数锁成固定模板，按你每周审片 ≤10 小时的节奏，进入「1 条 YouTube 英文深度纪录片 → 自动切 4 条竖屏 Shorts + 1 篇公众号深度长文」的周更流水线。
+- [ ] **Step 1（从你真正干过的事里挑 1 个首发母题）**：完全基于你现有的独家实战沉淀二选一——
+  1. **母题 A（FDE 一线改造纪实）**：复盘你在非技术公司带同事落地 AI 工作流的真实案例（原本怎么卡壳 → 你怎么设计 Agent/Skill → 哪些地方翻车了 → 最终怎么跑通）。
+  2. **母题 B（重度 AI 工程师的真实账单与路由架构）**：直接摊开你自己的 `ccusage` / Factory 亿级 Token 真实账单与 97% 缓存率实测，复盘你是怎么算清真账并搭起跨模型兜底架构的。
+- [ ] **Step 2（90 秒第一人称纪实 Pilot 试跑）**：把该事件里你真实的终端截图、账单、Git 记录归档为证据库；借用 `cinecode` 的 **`vox-explainer` 原件高亮 + `UI Hero Shot` 3D 暗场终端特写 + `voice_treat.py`（`close/room` 书桌旁白）+ `Kenney` 拟音**，渲染出前 **90 秒（Cold Open + 第一幕）** 的 1080p 样片，并跑通 `qc.py` 与 `scene_check.py` 全 PASS 报告发你审看。
+- [ ] **Step 3（有真仗打完再出片，宁缺毋滥）**：样片质感跑通后，把这套视觉与声音参数固化下来。后续每当你在工作或副业中真正打赢一仗、踩实一个坑、写出一个新 Skill，就用这套纪实语言把它拍成个人 IP 作品（同步切出竖屏切片与公众号长文），绝不为了博流量去做跟自己无关的热点题。
 
 ---
 
