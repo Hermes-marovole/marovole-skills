@@ -10,8 +10,8 @@
 
 2026 年 11 月 9 日（UTC 19:06:55），Anthropic 强化学习（RL）研究员 Jeremy Berman（`@jeremyberman`，简介为 `RL @AnthropicAI, prev @humansand, @reflection_ai, @ndea and co-founded http://beatgig.com. yc w19.`）在 X 上引用 Anthropic 官方发布 Claude Fable 5.2 与 Claude Mythos 5.2 的主帖，发布了一段 18.25 秒的 3D 恐龙生态短片，配文：
 
-- 主帖：`Welcome Fable 5.2, creator of worlds`（浏览 202,174 次，点赞 1,282，转发 48，收藏 344）
-- 线程补充（`2119870801730245009`）：`Built from scratch with Fable writing python to control blender`（浏览 3,687 次，点赞 83，收藏 28）
+- 主帖：`Welcome Fable 5.2, creator of worlds`（浏览 203,941 次，点赞 1,286，转发 48，收藏 345）
+- 线程补充（`2119870801730245009`）：`Built from scratch with Fable writing python to control blender`（浏览 3,698 次，点赞 84，收藏 28）
 
 我们下载原片（`video.twimg.com/amplify_video/2119869231831392256/vid/avc1/1536x642/NXcvA0_oRKUMA8iw.mp4`）并用 `ffprobe` 与 `ffmpeg` 场景切点检测（`select='gt(scene,0.02)'`）进行了实测分析：
 
