@@ -183,3 +183,7 @@ git push
 ---
 
 *来自翡冷翠* | 持续更新于 2026-11-06
+
+---
+
+**个人系统母站与实测长文合集**：[翡冷翠 · marovole.com](https://marovole.com/) ｜ [《你天天用 Codex，却没给它装「撤销键」》](https://marovole.com/essays/github-for-agent-users/) ｜ [《为什么 Hermes 依然是我的主力》](https://marovole.com/essays/hermes-vs-grokbot-muse/)
