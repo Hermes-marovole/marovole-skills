@@ -4,7 +4,7 @@
 - **作者**：泡泡oc（`@YsfPPoc`，4,429 粉）
 - **发布时间**：2026-11-19 01:11:00 UTC（2026-11-19 09:11 CST）
 - **抓取时间**：2026-11-20 07:31 CST（via `api.fxtwitter.com` & `teapawt.org`）
-- **互动数据**：16,608 浏览 / 674 赞 / 335 收藏 / 104 转发 / 1 引用 / 3 回复（3 条回复全部为 `@grok` 请求把图片整理成文字/Markdown）
+- **互动数据**：16,608 浏览 / 674 赞 / 335 收藏 / 104 转发 / 1 引用 / 3 回复（公开网页存档中至少 1 条明确 `@Grok` 请求把图片整理成 Markdown）
 - **整理归档**：来自翡冷翠（2026-11-20）
 
 ---
@@ -27,13 +27,25 @@
 ## 二、原始学术文献复核记录（2026-11-20 实查）
 
 1. **事前验尸法（Mitchell, Russo & Pennington 1989；Klein 2007；Veinott et al. 2010；Gallop & Bischoff 2016）**：
-   - Gary Klein 在 2007 年 9 月《哈佛商业评论》（*Performing a Project Premortem*）确实引用 1989 年研究称「increases the ability to correctly identify reasons for future outcomes by 30%」。
-   - 核查原论文 *Back to the Future: Temporal Perspective in the Explanation of Events*（*Journal of Behavioral Decision Making*, Vol. 2, pp. 25–38, 1989）发现：原实验并未评估原因质量；实验二（108 名芝加哥大学学生）中，假设结果「确定已发生」组平均列出 **4.60** 条原因（不确定组 **3.28** 条），具体事件链式原因（episodic reasons）比例为 **0.73（73%）** vs 不确定组 **0.37（37%）**（F(1,99)=26.63, p<.001），自评解释难度更低（3.00 vs 3.79），且用时无显著增加（18.3 分钟 vs 20.9 分钟）。
-   - 后续受控实验补上了质量与信心校准证据：Veinott et al. (2010, n=178) 证实事前验尸压低盲目自信的效果约为列优缺点或只列缺点的 2 倍；Gallop & Bischoff (2016, n=101 名资深项目经理与工程师) 证实事前验尸团队识别出显著更多高质量风险（创造性与合理性双维度均 >70 分）及历史案例中的“黑天鹅风险”。
+   - 据课程笔记（`corporate.jcx.au/premortem`）引述，Gary Klein 在 2007 年 9 月《哈佛商业评论》（*Performing a Project Premortem*）确实引用 1989 年研究称「increases the ability to correctly identify reasons for future outcomes by 30%」。
+   - 核查原论文 *Back to the Future: Temporal Perspective in the Explanation of Events*（*Journal of Behavioral Decision Making*, Vol. 2, pp. 25–38, 1989）发现：原实验并未评估原因质量，也未测预测准确率；它做的是人类情境实验（过去/未来、确定/不确定、成功/失败）。实验二招募 108 名芝加哥大学学生（76 名 MBA + 32 名有偿参与者，其中 1 名未接受确定性设定者被排除出后续分析）：
+     - 原因条数：确定组显著多于不确定组（`F(1,99) = 19.92, p < .001`；注：原论文表 1 实验二合并栏为 4.79 vs 3.23，讨论段为 4.60 vs 3.28，两处均值不一致）。
+     - 原因类型：编码为具体行动类原因（episodic / action-based）与一般因素类原因（abstract / factor-based）。合并过去与未来后，具体行动类原因占比为 **0.73（73%）** vs 不确定组 **0.37（37%）**（`F(1,99) = 26.63, p < .001`；仅未来情境为 **0.75（75%）** vs **0.42（42%）**）。
+     - 耗时与难度：仅在记录了整项任务耗时的 **32 名有偿参与者**中，确定组平均 **18.3 分钟**，不确定组 **20.9 分钟**，差异不显著；全样本七点评分自评解释难度，确定组 **3.00**，不确定组 **3.79**。作者据此推测两组生成解释的策略可能不同。
+   - **1989 原论文 Experiment 2 逐字摘录（pp. 30–34）**：
+     > "Exhibit 1 Experiment 2: Certain 5.17 4.41 4.79; Uncertain 3.06 3.38 3.23."
+     > "Exhibit 2 Experiment 2: Certain .71 .75 .73; Uncertain .31 .42 .37."
+     > "Each generated reason was coded as episodic (action-based) or abstract (factor-based)."
+     > "The first group consisted of 76 University of Chicago MBA students enrolled in an introductory marketing course... The second group was composed of 32 respondents to an ad for paid participants... The one exception is the time measure, which was collected only for the 32 paid subjects."
+     > "Within the two sure conditions, only one subject assumed less than absolute certainty; that subjects was dropped from further analysis."
+     > "Subjects generated more reasons for sure outcomes than for uncertain ones, F(1,99) = 19.92, p < .001... The proportion of episodic reasons was greater for sure outcomes (.73) than for uncertain ones (.37), F(1,99) = 26.63, p < .001."
+     > "Subjects found it more difficult to generate explanations for uncertain outcomes than for sure ones, (M = 3.79, and M = 3.00, respectively)... No reliable differences were found in time spent working across the experimental conditions (Fs less than 1). Notably, M = 18.3 minutes and M = 20.9 minutes for the certain and uncertain conditions respectively."
+     > "We found no differences in the amount of time subjects spent explaining, yet 4.60 reasons were generated per sure outcome and only 3.28 per uncertain one."
+   - 据课程笔记转述，后续两项人类对照实验补上了证据：Veinott et al. (2010, n=178 名大学生评估 H1N1 封控方案) 测出事前验尸对方案信心的降幅约为列优缺点或只列缺点组的 2 倍，提出解法后回升幅度最大；Gallop & Bischoff (2016, n=101 名有经验的项目群经理和工程师，4–6 人组，45 分钟对照传统头脑风暴) 发现事前验尸组识别出显著更多高质量风险（盲评创造性与合理性双维度均 >70 分），也更成功识别该历史案例中漏掉的“黑天鹅”风险。
 2. **慢写作法（Mueller & Oppenheimer 2014 vs Urry et al. 2021）**：
-   - Mueller & Oppenheimer (2014, *Psychological Science* 25(6):1159–1168) 在三项研究中报告电脑记笔记者更容易逐字转录、在概念题上表现不如手写组。
-   - 但 Urry et al. (2021, *Psychological Science* 32(3):326–339) 对其 Study 1 做了预注册直接复现（Tufts 大学学生，电脑组 n=74 vs 手写组 n=68）并整合 8 项同类研究做元分析：电脑组确实写字更多、逐字重合度更高，但**测验成绩上电脑组与手写组并无显著差异**，不支持「单靠手写介质就能靠更好编码提升即时学习」的说法。
+   - Mueller & Oppenheimer (2014, *Psychological Science*) 在三项研究中报告电脑记笔记者在概念题上表现不如手写组。
+   - 但 Tufts 大学心理系 Heather L. Urry 等人 (2021, 同刊 *Psychological Science*) 对其 Study 1 做了预注册直接复现（电脑组 n=74 vs 手写组 n=68，短暂干扰后不复习即测验），另对 8 项同类研究做了探索性元分析：电脑组确实写字更多、逐字重合率更高，但**未重现手写组的即时学习优势**（逐字重合与较差成绩的关联也不稳健），不支持「手写记笔记能通过更好编码提升即时学习」的说法。
 3. **钢人论证法（Daniel Dennett / Rapoport's Rules）**：
-   - Daniel Dennett 在 *Intuition Pumps and Other Tools for Thinking* (2013, pp. 33–35) 中引介的是社会心理学家兼博弈论学者 **Anatol Rapoport** 的四条批评规则（Rapoport's Rules），第一条为：清晰、生动、公允地重述对方立场，直到对方说出「谢谢，我真希望当初是我这么说的」。
+   - 据 Daniel Dennett *Intuition Pumps and Other Tools for Thinking* (2013) 段落的公开摘录，其引介博弈论学者 **Anatol Rapoport** 的四条批评规则：公允重述对方立场、列出共识、说出从对方那里学到什么，只有做完这三步才允许提出批评。
 
 *来自翡冷翠*
