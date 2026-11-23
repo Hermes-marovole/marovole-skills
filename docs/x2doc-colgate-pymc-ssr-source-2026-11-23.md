@@ -20,8 +20,12 @@
 - `"For every experiment, we estimate this ceiling by simulating 2,000 test–retest scenarios, splitting each survey into two equally-sized cohorts for each scenario: test and control."`
 - `"Repeating this experiment m=2,000 times and taking the average over the respective correlation coefficient, we obtain correlation attainment"`
 
-### 3. 合成消费者采样与三种提问方法（Section 3.4 & Appendix A.4）
+### 3. 合成消费者采样与三种提问方法（Section 3.4 & Appendix A.4 & Appendix B）
+- `"Subsequently, the LLM was prompted with the question “How likely are you to purchase the product?”, and a response was sampled."`
 - `"In the following analysis we use n=2 samples, which we found was sufficient to obtain stable results."`
+- `"After sampling the response, we prompt the LLM to be a “Likert rating expert” and request it to map the text response it just gave, to the corresponding integer response on a 5pt Likert scale. The same LLM that generates a response is also tasked with rating it, using p_top=1 and T_LLM=0.3."`
+- `"For instance, a response may read “I’d probably buy it. I like that it’s easy to use and I can take it with me. Plus, the price isn’t too bad.” Depending on how the scale is defined and who is on the receiving end of this statement, the response most likely would map to a “4” or a “5”."`
+- `"When we refer to “image stimulus” in the main text, an image like this, including either both an illustration and the concept description or only a concept description was supplied to an LLM synthetic consumer. When we refer to “text stimulus,” only the text was given to the synthetic consumer. For the latter, the text was previously transcribed from the product concept image using GPT-4o."`
 - `"We focused on models by Google and OpenAI; after initial experiments with different models such as “‘gemini-1.5-flash,” “gemini-2.5”, and “o3” we settled on “gemini-2.0-flash” (referred to as “Gem-2f” throughout the text) and “gpt-4o” (“GPT-4o”) for production runs as these models gave the most consistent responses across all experiment types. Experiments were run with parameters p_top=0.9 and temperature T_LLM in {0.5, 1.5} if not noted otherwise."`
 - `"In this analysis, we use m=6 sets (see App. C.1)."`
 - `"In this study, we exclusively use OpenAI’s “text-embedding-3-small” model. Tests with “text-embedding-3-large” left the results virtually unchanged."`
