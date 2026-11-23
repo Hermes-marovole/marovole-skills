@@ -16,9 +16,10 @@
 - `"To a lesser extent, income level is reported, and only nine surveys contain information on consumer ethnicity."`
 - `"While surveys prompt participants to score product concepts along various dimensions, we focus on the central question of purchase intent, often phrased as “Based on everything you’ve seen and heard, how likely are you to purchase the product?”. This response was scored on a 5pt Likert scale, requiring participants to select one of the integer numbers i=1,2,3,4,5."`
 
-### 2. 评价指标与重测信度上限模拟（Section 3.3 & Appendix A.3）
-- `"For every experiment, we estimate this ceiling by simulating 2,000 test–retest scenarios, splitting each survey into two equally-sized cohorts for each scenario: test and control."`
+### 2. 评价指标与重测信度上限模拟（Section 3.3 & Appendix A.3 & Section 4.3）
+- `"Because correlation is upper bounded by noisy human data with a narrow PI_s distribution, we measure success across all 57 surveys in terms of the maximum attainable correlation, akin to test–retest reliability. For every experiment, we estimate this ceiling by simulating 2,000 test–retest scenarios, splitting each survey into two equally-sized cohorts for each scenario: test and control."`
 - `"Repeating this experiment m=2,000 times and taking the average over the respective correlation coefficient, we obtain correlation attainment"`
+- `"To explore how well models leveraged the information contained in demographic attributes to arrive at the results above, we ran an additional experiment using Gem-2f and an SC system prompt that left out all demographic features. Surprisingly, this resulted in survey distributions that were very close to the real distributions, with consistently high purchase intent of ‘4’ and ‘5’ and a mean distribution similarity of K^xy=0.91 (see Figs. 29–31). Moreover, we even obtained the same mean and standard deviation as the real data for purchase intent across all surveys E[PI]=4.0±0.1. At the same time, for the best reference set, correlation attainment only reached rho=50% compared to rho=92% for Gem-2f SCs prompted with demographic markers, which suggests that if LLMs are not prompted with a detailed enough persona they will rate products more positively in general and will not leverage the actual information in the product concepts enough to produce a meaningful signal."`
 
 ### 3. 合成消费者采样与三种提问方法（Section 3.4 & Appendix A.4 & Appendix B）
 - `"Subsequently, the LLM was prompted with the question “How likely are you to purchase the product?”, and a response was sampled."`
