@@ -1,7 +1,7 @@
 ---
 name: dokobot
-description: >-
-  Read and extract content from any web page using a real Chrome browser — including SPAs, JavaScript-rendered sites, and complex dynamic pages. Use when fetching page content that headless tools can't render, searching the web, or reading fully rendered pages via your own browser.
+description: "Extract JS-rendered web pages via Chrome. Not static URLs."
+when_to_use: "Read and extract content from any web page using a real Chrome browser — including SPAs, JavaScript-rendered sites, and complex dynamic pages. Use when fetching page content that headless tools can't render, searching the web, or reading fully rendered pages via your own browser."
 read_when:
   - Reading web pages that require JavaScript rendering or dynamic content
   - Extracting text and structured content from single-page applications (SPAs)
@@ -70,6 +70,8 @@ When fetching a web page in Hermes, choose in this order:
 - ✅ Chinese platforms: 小红书, 知乎, B站, 微博, 微信公众号
 - ✅ Sites with mild bot detection
 - ❌ Cloudflare **JS Challenge** pages (e.g. pplx.ai, perplexity.ai) — CDP-based reading triggers the challenge; requires real human interaction
+
+> See [references/test-results.md](references/test-results.md) for concrete testing data from the 2026-04-30 session, including the capability matrix across Browserbase / Jina Reader / Dokobot.
 
 ## Multi-Device Handling (Critical)
 

@@ -1,0 +1,241 @@
+<!--
+  浅色一页式商业调研报告骨架（市场 / 竞品 / 财务 / VOC）。
+
+  用法：复制到 <scratch>/<topic>_research/report_vX.Y.html，替换所有 {大括号} 占位内容。
+  引用规则（与 grounded-citations 台账同源，不可手敲）：
+    1. 读 --ledger 指定的 ledger.json 里的 sources 数组；
+    2. 每条生成 <div class="source-item" id="ref-{id}">（编号 + 标题链接 + URL + 已挂 verbatim 引语）；
+    3. 正文每个 [n] 写成 <a class="cite" href="#ref-n">[n]</a>，一句最多 3 个。
+  结构铁律：总（结论先行 + KPI 卡）→ 分（逐个核心命题跳源举证）→ 总（总表 + 单位经济 + Do/Don't）→ Sources。
+  标题只写实质判断句：严禁把「Part 1 / 【总】【分】 / 论证一 / Executive Verdict」这类分区标签或「晚点文风 / 先产品后商业 / 白话概念扫盲 / 舒适排版 / 机器核验通过」等自我标榜的元说明印进封面、目录、h2 或 section-badge。
+  公司调研的章节顺序：产品矩阵与工作流拆解 → 工序横评 → 公司沿革与股权 → 融资估值 → 风险诉讼 → 收束。
+  禁止：深色仪表盘、按抓取平台罗列流水账、图表堆叠无结论。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{REPORT_TITLE}</title>
+<style>
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --text: #0f172a;
+    --muted: #475569; --subtle: #64748b; --border: #e2e8f0;
+    --primary: #1e40af; --primary-light: #eff6ff; --accent: #0284c7;
+    --danger: #b91c1c; --danger-bg: #fef2f2;
+    --success: #15803d; --success-bg: #f0fdf4;
+    --warn: #b45309; --warn-bg: #fffbeb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.68; font-size: 15px;
+  }
+  .container { max-width: 1120px; margin: 0 auto; padding: 36px 24px 72px; }
+
+  header.report-header {
+    background: var(--card); border: 1px solid var(--border);
+    border-top: 5px solid var(--primary); border-radius: 12px;
+    padding: 28px 32px; margin-bottom: 28px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--primary-light); color: var(--primary); }
+  .tag.warn { background: var(--warn-bg); color: var(--warn); }
+  .tag.success { background: var(--success-bg); color: var(--success); }
+  h1 { font-size: 26px; line-height: 1.35; margin: 0 0 12px 0; }
+  h2 { font-size: 21px; margin: 4px 0 18px 0; padding-bottom: 10px; border-bottom: 2px solid #f1f5f9; }
+  h3 { font-size: 17px; margin: 24px 0 12px 0; color: #1e293b; }
+  .lede { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px 20px; font-size: 13.5px; color: var(--muted);
+    border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;
+  }
+
+  .section-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px 32px; margin-bottom: 28px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  }
+  .section-badge {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--primary); background: var(--primary-light);
+    padding: 4px 10px; border-radius: 6px; margin-bottom: 8px;
+  }
+
+  /* 4 个顶层 KPI 卡：首屏给结论，不给背景铺垫 */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 18px 0 24px; }
+  .kpi-card { background: #f8fafc; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 16px 18px; }
+  .kpi-card.danger { border-left-color: var(--danger); }
+  .kpi-card.success { border-left-color: var(--success); }
+  .kpi-card.warn { border-left-color: var(--warn); }
+  .kpi-label { font-size: 12.5px; color: var(--subtle); font-weight: 600; margin-bottom: 6px; }
+  .kpi-val { font-size: 23px; font-weight: 800; margin-bottom: 6px; }
+  .kpi-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+  /* 结论框：一句判断 + 一句核心证据 */
+  .verdict-box { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 14px; }
+  .verdict-title { font-weight: 700; color: var(--primary); margin-bottom: 6px; font-size: 15.5px; }
+  .verdict-title.danger { color: var(--danger); }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 22px; font-size: 13.5px; }
+  th, td { border: 1px solid var(--border); padding: 11px 13px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; font-weight: 700; }
+  tr:nth-child(even) td { background: #fcfdff; }
+
+  .callout { padding: 14px 18px; border-radius: 8px; margin: 16px 0; font-size: 14px; }
+  .callout.info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+  .callout.warn { background: var(--warn-bg); border-left: 4px solid var(--warn); }
+  .callout.danger { background: var(--danger-bg); border-left: 4px solid var(--danger); }
+  .callout.success { background: var(--success-bg); border-left: 4px solid var(--success); }
+
+  /* 正文引用角标：href 指向文末 #ref-n，与 ledger.json 同源 */
+  a.cite { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 12px; vertical-align: super; margin: 0 1px; }
+  a.cite:hover { text-decoration: underline; }
+
+  .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin: 16px 0; }
+
+  .source-item { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .source-item:last-child { border-bottom: none; }
+  .source-header { font-weight: 600; margin-bottom: 4px; }
+  .source-badge { color: var(--primary); margin-right: 6px; }
+  .source-title { color: var(--text); text-decoration: none; }
+  .source-title:hover { text-decoration: underline; }
+  .source-url a { color: var(--subtle); word-break: break-all; font-size: 12px; }
+  .source-quote { margin-top: 6px; padding: 6px 10px; background: #f8fafc; border-left: 3px solid #cbd5e1; color: var(--muted); font-size: 12.5px; }
+
+  /* 直接打印 / 无头浏览器导 PDF 时的 A4 版式：卡片拆壳、表格与引用块不跨页、标题不带尾页 */
+  @media print {
+    @page { size: A4; margin: 16mm 14mm; }
+    body { background: #fff; font-size: 10.6pt; line-height: 1.62; }
+    .container { max-width: none; padding: 0; }
+    .section-card, header.report-header { box-shadow: none; border: none; padding: 0 0 6mm 0;
+      margin-bottom: 6mm; border-radius: 0; }
+    header.report-header { border-top: none; }
+    h2, h3 { page-break-after: avoid; }
+    table, .source-item, .verdict-box { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============ 头部：身份 + 数据截止日 + 校验状态 ============ -->
+  <header class="report-header">
+    <!-- 页面顶部一律不放分区标签（{STRUCTURE_TAG} / Part 1）与「Grounding：N 项来源已核验」这类自评角标：
+         它们都是元叙事，核验结果写在 Sources 台账里。需要放背景信息就写「对象 / 数据截止 / 对照平台」这类事实字段。 -->
+    <h1>{REPORT_TITLE}</h1>
+    <p class="lede">{ONE_LINE_THESIS}</p>
+    <div class="meta-grid">
+      <div><strong>主体：</strong>{SUBJECT}<a class="cite" href="#ref-1">[1]</a></div>
+      <div><strong>关键人：</strong>{KEY_PERSON}<a class="cite" href="#ref-2">[2]</a></div>
+      <div><strong>数据截止：</strong>{AS_OF}</div>
+    </div>
+  </header>
+
+  <!-- ============ Part 1 总：结论先行 ============ -->
+  <section class="section-card">
+    <h2>{N_JUDGEMENTS} 条商业判断与顶层 KPI</h2>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">{KPI_1_LABEL}</div>
+        <div class="kpi-val">{KPI_1_VALUE}</div>
+        <div class="kpi-desc">{KPI_1_NOTE}<a class="cite" href="#ref-1">[1]</a></div>
+      </div>
+      <div class="kpi-card success">
+        <div class="kpi-label">{KPI_2_LABEL}</div>
+        <div class="kpi-val">{KPI_2_VALUE}</div>
+        <div class="kpi-desc">{KPI_2_NOTE}<a class="cite" href="#ref-2">[2]</a></div>
+      </div>
+      <div class="kpi-card warn">
+        <div class="kpi-label">{KPI_3_LABEL}</div>
+        <div class="kpi-val">{KPI_3_VALUE}</div>
+        <div class="kpi-desc">{KPI_3_NOTE}<a class="cite" href="#ref-3">[3]</a></div>
+      </div>
+      <div class="kpi-card danger">
+        <div class="kpi-label">{KPI_4_LABEL}</div>
+        <div class="kpi-val">{KPI_4_VALUE}</div>
+        <div class="kpi-desc">{KPI_4_NOTE}<a class="cite" href="#ref-4">[4]</a></div>
+      </div>
+    </div>
+
+    <div class="verdict-box">
+      <div class="verdict-title">结论一（{JUDGEMENT_1_TAG}）：{JUDGEMENT_1}<a class="cite" href="#ref-5">[5]</a></div>
+      <div>{JUDGEMENT_1_EVIDENCE}</div>
+    </div>
+
+    <div class="verdict-box">
+      <div class="verdict-title danger">结论二（{JUDGEMENT_2_TAG}）：{JUDGEMENT_2}<a class="cite" href="#ref-6">[6]</a></div>
+      <div>{JUDGEMENT_2_EVIDENCE}</div>
+    </div>
+  </section>
+
+  <!-- ============ Part 2 分：逐个论证（每节闭环：子结论 → 多维举证 → 铁律） ============ -->
+  <section class="section-card">
+    <h2>{PROOF_1_TITLE}</h2>
+
+    <h3>{PROOF_1_SUB_1}</h3>
+    <p>{PROOF_1_BODY_1}<a class="cite" href="#ref-7">[7]</a><a class="cite" href="#ref-8">[8]</a></p>
+
+    <h3>{PROOF_1_SUB_2}</h3>
+    <table>
+      <thead>
+        <tr><th>{COL_1}</th><th>{COL_2}</th><th>{COL_3}</th><th>{COL_4}</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>{ROW_1_A}</td><td>{ROW_1_B}</td><td>{ROW_1_C}<a class="cite" href="#ref-9">[9]</a></td><td>{ROW_1_D}</td></tr>
+        <tr><td>{ROW_2_A}</td><td>{ROW_2_B}</td><td>{ROW_2_C}</td><td>{ROW_2_D}<a class="cite" href="#ref-10">[10]</a></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <strong>{CALLOUT_TITLE}</strong><br />
+      {CALLOUT_BODY}<a class="cite" href="#ref-11">[11]</a>
+    </div>
+  </section>
+
+  <!-- ============ Part 3 总：总表 + 单位经济 + Do/Don't ============ -->
+  <section class="section-card">
+    <h2>战略收束：总账与可拍板底线</h2>
+
+    <h3>{UNIT_ECON_TITLE}</h3>
+    <table>
+      <thead>
+        <tr><th>核算科目</th><th>情景 A：{SCENARIO_A}</th><th>情景 B：{SCENARIO_B}</th><th>情景 C：{SCENARIO_C}</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>{LE_ROW_1}</td><td>{LE_A1}</td><td>{LE_B1}</td><td>{LE_C1}</td></tr>
+        <tr><td>{LE_ROW_2}</td><td>{LE_A2}</td><td>{LE_B2}</td><td>{LE_C2}</td></tr>
+        <tr><td><strong>净贡献</strong></td><td style="color:var(--danger);font-weight:700;">{LE_A3}</td><td style="color:var(--success);font-weight:700;">{LE_B3}</td><td style="color:var(--warn);font-weight:700;">{LE_C3}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict-box">
+      <div class="verdict-title">行动底线一（{ACTOR_1}）</div>
+      <div>• <strong>DO：</strong>{DO_1}<br />• <strong>DON'T：</strong>{DONT_1}</div>
+    </div>
+    <div class="verdict-box">
+      <div class="verdict-title">行动底线二（{ACTOR_2}）</div>
+      <div>• <strong>DO：</strong>{DO_2}<br />• <strong>DON'T：</strong>{DONT_2}</div>
+    </div>
+  </section>
+
+  <!-- ============ Part 4 Sources：由 ledger.json 生成，勿手敲 ============ -->
+  <section class="section-card">
+    <h2>参考来源与原文引用（Sources [1]–[{N_SOURCES}]）</h2>
+    <!-- SOURCES_BLOCK_START：用脚本读 ledger.json 的 sources 数组循环生成下列块，原样替换本注释 -->
+    <div class="source-item" id="ref-1">
+      <div class="source-header"><span class="source-badge">[1]</span><a class="source-title" href="{SOURCE_1_URL}" target="_blank" rel="noopener">{SOURCE_1_TITLE}</a></div>
+      <div class="source-url"><a href="{SOURCE_1_URL}" target="_blank" rel="noopener">{SOURCE_1_URL}</a></div>
+      <div class="source-quote">“{SOURCE_1_QUOTE}”</div>
+    </div>
+    <!-- SOURCES_BLOCK_END -->
+  </section>
+
+</div>
+</body>
+</html>
