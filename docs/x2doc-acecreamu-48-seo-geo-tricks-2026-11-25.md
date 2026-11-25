@@ -107,7 +107,7 @@
 
 ## 三、评论区关键回复摘录（来源：`teapawt.org` 存档）
 
-1. **作者自回复（约发帖 1 小时后）**：
+1. **作者自回复**：
    > "If you’d like to finally stop worrying about SEO/GEO, send me a private message. We in tryera.ai can take care of all your visibility issues"
 2. **Smitty (`@boynamedsmitty`)**：
    > `Several of the "borrowed authority" tricks fall under Google's site reputation abuse policy`
